@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" width="100%" height="100%">
+  <defs>
+    <!-- Paleta de colores y estilos -->
+    <style>
+      .bg-dark { fill: #0a0a0c; }
+      .panel-dark { fill: #1c1f26; }
+      .panel-light { fill: #e6e7e8; }
+      .panel-yellow { fill: #f4b302; }
+      
+      .stroke-base { stroke: #2a2d35; stroke-width: 2; fill: none; }
+      .stroke-light { stroke: #e6e7e8; stroke-width: 2; fill: none; }
+      .stroke-yellow { stroke: #f4b302; stroke-width: 2; fill: none; }
+      
+      .text-code { font-family: monospace; font-weight: bold; font-size: 16px; }
+
+      /* ================= ANIMACIONES CSS ================= */
+      
+      /* Parpadeo del cursor */
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor { animation: blink 1s step-end infinite; }
+
+      /* Movimiento de las líneas de conexión (flujo de datos) */
+      @keyframes flow {
+        to { stroke-dashoffset: -40; }
+      }
+      .flow-line {
+        stroke-dasharray: 6 6;
+        animation: flow 1.5s linear infinite;
+      }
+      
+      /* Barra de carga */
+      @keyframes load {
+        0%, 100% { width: 10px; }
+        50% { width: 170px; }
+      }
+      .loading-bar { animation: load 3s ease-in-out infinite; }
+
+      /* Rotación del gráfico */
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .spinner {
+        transform-origin: 380px 75px;
+        animation: spin 4s linear infinite;
+      }
+
+      /* Elementos flotantes */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-6px); }
+      }
+      .float { animation: float 3s ease-in-out infinite; }
+      .float-delay { animation: float 3s ease-in-out 1.5s infinite; }
+
+      /* Pulsación de nodos */
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.4); opacity: 0.7; }
+      }
+      .pulse {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse 2s infinite;
+      }
+      .pulse-delay {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse 2s 1s infinite;
+      }
+    </style>
+
+    <!-- Patrón de fondo estilo cuadrícula de diseño -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#121418" stroke-width="1"/>
+      <circle cx="40" cy="40" r="1" fill="#2a2d35" />
+    </pattern>
+  </defs>
+
+  <!-- Fondo Base y Cuadrícula -->
+  <rect fill="none" width="1200" height="200" rx="8" />
+  <rect width="1200" height="200" fill="url(#grid)" rx="8" />
+
+  <!-- ==================== LÍNEAS DE CONEXIÓN PRINCIPALES ==================== -->
+  <!-- Se añaden clases flow-line para simular transferencia de datos -->
+  <path class="stroke-base" d="M 0 100 L 1200 100" />
+  <path class="stroke-light flow-line" d="M 280 140 L 320 140 L 340 170 L 400 170" />
+  <path class="stroke-yellow flow-line" d="M 780 40 L 820 40 L 850 70 L 950 70" />
+  <path class="stroke-base flow-line" d="M 500 180 L 500 150 L 580 150" />
+  <path class="stroke-base flow-line" d="M 1020 120 L 1080 120 L 1100 150 L 1200 150" />
+
+  <!-- ==================== SECCIÓN IZQUIERDA (Terminal & Código) ==================== -->
+  <!-- Panel Principal Izquierdo -->
+  <rect class="panel-dark" x="60" y="30" width="220" height="140" rx="12" />
+  <!-- Cabecera estilo ventana -->
+  <path d="M 60 42 Q 60 30 72 30 L 268 30 Q 280 30 280 42 L 280 50 L 60 50 Z" class="bg-dark" />
+  <circle cx="75" cy="40" r="3" fill="#ff5f56" />
+  <circle cx="85" cy="40" r="3" fill="#ffbd2e" />
+  <circle cx="95" cy="40" r="3" fill="#27c93f" />
+  
+  <!-- Líneas de código simuladas -->
+  <rect class="panel-yellow" x="80" y="65" width="120" height="6" rx="3" />
+  <rect class="panel-light" x="80" y="80" width="150" height="6" rx="3" />
+  <rect fill="#4a505e" x="100" y="95" width="130" height="6" rx="3" />
+  <rect fill="#4a505e" x="100" y="110" width="90" height="6" rx="3" />
+  <rect class="panel-yellow" x="80" y="125" width="60" height="6" rx="3" />
+  
+  <!-- Símbolo de prompt y cursor animado -->
+  <text class="text-code panel-light" x="80" y="152">></text>
+  <rect class="panel-yellow cursor" x="95" y="142" width="10" height="12" />
+
+  <!-- ==================== SECCIÓN CENTRAL (Dashboard & Lógica) ==================== -->
+  <!-- Panel Amarillo Central -->
+  <rect class="panel-yellow" x="320" y="20" width="260" height="110" rx="16" />
+  
+  <!-- Gráfico Circular / Gauge con rotación -->
+  <circle cx="380" cy="75" r="35" class="bg-dark" />
+  <circle cx="380" cy="75" r="25" class="panel-light" />
+  <path d="M 380 75 L 380 50 A 25 25 0 0 1 405 75 Z" class="panel-dark spinner" />
+  
+  <!-- Bloques de datos -->
+  <rect class="bg-dark" x="440" y="40" width="110" height="20" rx="4" />
+  <rect class="panel-light" x="440" y="40" width="40" height="20" rx="4" />
+  
+  <rect class="bg-dark" x="440" y="70" width="110" height="40" rx="4" />
+  <rect class="panel-light" x="450" y="80" width="60" height="4" rx="2" />
+  <rect fill="#4a505e" x="450" y="92" width="90" height="4" rx="2" />
+  <rect class="panel-light" x="450" y="100" width="40" height="4" rx="2" />
+
+  <!-- Panel Inferior Blanco (Progreso) -->
+  <rect class="panel-light" x="360" y="110" width="300" height="70" rx="12" />
+  <!-- UI interna del panel blanco con barra animada -->
+  <circle cx="410" cy="145" r="20" class="panel-dark" />
+  <circle cx="410" cy="145" r="10" class="panel-yellow" />
+  
+  <rect class="panel-dark" x="450" y="130" width="180" height="30" rx="6" />
+  <rect class="panel-yellow loading-bar" x="455" y="135" width="70" height="20" rx="4" />
+
+  <!-- ==================== SECCIÓN DERECHA (Nodos, API y Git) ==================== -->
+  <!-- Panel Gris Oscuro -->
+  <rect class="panel-dark" x="720" y="50" width="240" height="120" rx="12" />
+  
+  <!-- Árbol de nodos / Git branch -->
+  <path class="stroke-base" d="M 750 110 L 820 110 L 850 80 L 920 80" />
+  <path class="stroke-light" d="M 820 110 L 850 140 L 920 140" />
+  
+  <!-- Nodos con animación de pulso -->
+  <circle cx="750" cy="110" r="8" class="panel-yellow pulse" />
+  <circle cx="820" cy="110" r="6" class="panel-light" />
+  <circle cx="920" cy="80" r="8" class="panel-light" />
+  <circle cx="920" cy="140" r="8" class="panel-yellow pulse-delay" />
+  
+  <rect class="bg-dark" x="880" y="65" width="80" height="30" rx="6" />
+  <text fill="#e6e7e8" font-family="sans-serif" font-size="10" font-weight="bold" x="902" y="84">GET</text>
+
+  <rect class="bg-dark" x="880" y="125" width="80" height="30" rx="6" />
+  <text class="panel-yellow" font-family="sans-serif" font-size="10" font-weight="bold" x="898" y="144">POST</text>
+
+  <!-- ==================== DECORACIONES Y DETALLES FLOTANTES ==================== -->
+  <!-- Icono de Batería / Carga (flotante) -->
+  <g class="float-delay">
+    <rect class="stroke-yellow" x="650" y="30" width="30" height="16" rx="3" />
+    <rect class="panel-yellow" x="653" y="33" width="18" height="10" rx="2" />
+    <path class="panel-yellow" d="M 682 35 L 684 35 L 684 41 L 682 41 Z" />
+  </g>
+
+  <!-- Llaves y Código flotante -->
+  <text class="text-code panel-light float" x="1000" y="60">{ }</text>
+  <text class="text-code panel-yellow float" x="280" y="180">&lt;/&gt;</text>
+
+  <!-- Nodos y puntos de conexión extra -->
+  <circle cx="20" cy="100" r="4" class="panel-light" />
+  <circle cx="1180" cy="150" r="4" class="panel-yellow pulse" />
+  <circle cx="680" cy="170" r="3" class="panel-dark" stroke="#f4b302" stroke-width="2" />
+  <circle cx="1020" cy="120" r="3" class="panel-dark" stroke="#e6e7e8" stroke-width="2" />
+
+  <!-- Bloque de servidores apilados -->
+  <rect class="panel-dark" x="1060" y="80" width="100" height="14" rx="3" />
+  <rect class="panel-yellow" x="1065" y="84" width="4" height="6" rx="1" />
+  <rect class="panel-light cursor" x="1073" y="84" width="4" height="6" rx="1" /> <!-- Luz parpadeante -->
+
+  <rect class="panel-dark" x="1060" y="100" width="100" height="14" rx="3" />
+  <rect class="panel-yellow" x="1065" y="104" width="4" height="6" rx="1" />
+  <rect class="panel-light cursor" x="1073" y="104" width="4" height="6" rx="1" style="animation-delay: 0.5s;" /> <!-- Luz parpadeante -->
+</svg>
