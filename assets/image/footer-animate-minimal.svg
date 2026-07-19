@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" width="100%" height="100%">
+  <defs>
+    <!-- Paleta de colores y estilos -->
+    <style>
+      .bg-dark { fill: #0a0a0c; }
+      .panel-dark { fill: #1c1f26; }
+      .panel-light { fill: #e6e7e8; }
+      .panel-yellow { fill: #f4b302; }
+      
+      .stroke-base { stroke: #2a2d35; stroke-width: 2; fill: none; }
+      .stroke-light { stroke: #e6e7e8; stroke-width: 2; fill: none; }
+      .stroke-yellow { stroke: #f4b302; stroke-width: 2; fill: none; }
+      
+      .text-code { font-family: monospace; font-weight: bold; font-size: 14px; }
+
+      /* ================= ANIMACIONES CSS ================= */
+      
+      /* Parpadeo del cursor */
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor { animation: blink 1s step-end infinite; }
+
+      /* Movimiento de las líneas de conexión (flujo de datos) */
+      @keyframes flow {
+        to { stroke-dashoffset: -40; }
+      }
+      .flow-line {
+        stroke-dasharray: 6 6;
+        animation: flow 1.5s linear infinite;
+      }
+      
+      /* Barra de carga */
+      @keyframes load {
+        0%, 100% { width: 10px; }
+        50% { width: 100px; }
+      }
+      .loading-bar { animation: load 3s ease-in-out infinite; }
+
+      /* Rotación del gráfico */
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .spinner {
+        transform-origin: 365px 50px;
+        animation: spin 4s linear infinite;
+      }
+
+      /* Elementos flotantes */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+      }
+      .float { animation: float 3s ease-in-out infinite; }
+      .float-delay { animation: float 3s ease-in-out 1.5s infinite; }
+
+      /* Pulsación de nodos */
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.4); opacity: 0.7; }
+      }
+      .pulse {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse 2s infinite;
+      }
+      .pulse-delay {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse 2s 1s infinite;
+      }
+    </style>
+
+    <!-- Patrón de fondo estilo cuadrícula rediseñado para 100px de alto -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#121418" stroke-width="1"/>
+      <circle cx="40" cy="40" r="1" fill="#2a2d35" />
+    </pattern>
+  </defs>
+
+  <!-- Fondo Base y Cuadrícula -->
+  <rect fill="none" width="1200" height="100" rx="6" />
+  <rect width="1200" height="100" fill="url(#grid)" rx="6" />
+
+  <!-- ==================== LÍNEAS DE CONEXIÓN PRINCIPALES ==================== -->
+  <path class="stroke-base" d="M 0 50 L 1200 50" />
+  <path class="stroke-light flow-line" d="M 270 75 L 310 75 L 325 50" />
+  <path class="stroke-yellow flow-line" d="M 590 25 L 670 25 L 690 50" />
+  <path class="stroke-base flow-line" d="M 1010 50 L 1040 75 L 1200 75" />
+
+  <!-- ==================== SECCIÓN IZQUIERDA (Terminal & Código) ==================== -->
+  <!-- Panel Principal Izquierdo compactado -->
+  <rect class="panel-dark" x="50" y="15" width="220" height="70" rx="8" />
+  <!-- Cabecera estilo ventana -->
+  <path d="M 50 23 Q 50 15 58 15 L 262 15 Q 270 15 270 23 L 270 27 L 50 27 Z" class="bg-dark" />
+  <circle cx="62" cy="21" r="2.5" fill="#ff5f56" />
+  <circle cx="70" cy="21" r="2.5" fill="#ffbd2e" />
+  <circle cx="78" cy="21" r="2.5" fill="#27c93f" />
+  
+  <!-- Líneas de código simuladas -->
+  <rect class="panel-yellow" x="65" y="37" width="100" height="4" rx="2" />
+  <rect class="panel-light" x="65" y="47" width="130" height="4" rx="2" />
+  <rect fill="#4a505e" x="80" y="57" width="110" height="4" rx="2" />
+  
+  <!-- Símbolo de prompt y cursor animado -->
+  <text class="text-code panel-light" x="65" y="77">&gt;</text>
+  <rect class="panel-yellow cursor" x="78" y="68" width="8" height="10" />
+
+  <!-- ==================== SECCIÓN CENTRAL (Dashboard & Lógica) ==================== -->
+  <!-- Panel Amarillo Central estilizado para formato panorámico -->
+  <rect class="panel-yellow" x="310" y="15" width="260" height="70" rx="10" />
+  
+  <!-- Gráfico Circular / Gauge adaptado -->
+  <circle cx="365" cy="50" r="26" class="bg-dark" />
+  <circle cx="365" cy="50" r="18" class="panel-light" />
+  <path d="M 365 50 L 365 32 A 18 18 0 0 1 383 50 Z" class="panel-dark spinner" />
+  
+  <!-- Bloques de datos reducidos -->
+  <rect class="bg-dark" x="410" y="30" width="140" height="14" rx="3" />
+  <rect class="panel-light" x="410" y="30" width="50" height="14" rx="3" />
+  
+  <!-- UI con barra animada integrada en el bloque principal -->
+  <rect class="bg-dark" x="410" y="52" width="140" height="18" rx="4" />
+  <rect class="panel-yellow loading-bar" x="414" y="55" width="60" height="12" rx="2" />
+
+  <!-- ==================== SECCIÓN DERECHA (Nodos, API y Git) ==================== -->
+  <!-- Panel Gris Oscuro reposicionado y ajustado -->
+  <rect class="panel-dark" x="710" y="20" width="240" height="60" rx="8" />
+  
+  <!-- Árbol de nodos / Git branch -->
+  <path class="stroke-base" d="M 735 50 L 795 50 L 815 35 L 875 35" />
+  <path class="stroke-light" d="M 795 50 L 815 65 L 875 65" />
+  
+  <!-- Nodos con animación de pulso -->
+  <circle cx="735" cy="50" r="6" class="panel-yellow pulse" />
+  <circle cx="795" cy="50" r="5" class="panel-light" />
+  <circle cx="865" cy="35" r="6" class="panel-light" />
+  <circle cx="865" cy="65" r="6" class="panel-yellow pulse-delay" />
+  
+  <rect class="bg-dark" x="895" y="25" width="45" height="18" rx="4" />
+  <text fill="#e6e7e8" font-family="sans-serif" font-size="8" font-weight="bold" x="908" y="37">GET</text>
+
+  <rect class="bg-dark" x="895" y="55" width="45" height="18" rx="4" />
+  <text class="panel-yellow" font-family="sans-serif" font-size="8" font-weight="bold" x="904" y="67">POST</text>
+
+  <!-- ==================== DECORACIONES Y DETALLES FLOTANTES ==================== -->
+  <!-- Icono de Batería / Carga (flotante) -->
+  <g class="float-delay">
+    <rect class="stroke-yellow" x="610" y="20" width="24" height="12" rx="2" />
+    <rect class="panel-yellow" x="612" y="22" width="14" height="8" rx="1" />
+    <path class="panel-yellow" d="M 635 24 L 636 24 L 636 28 L 635 28 Z" />
+  </g>
+
+  <!-- Llaves y Código flotante ajustados en escala -->
+  <text class="text-code panel-light float" x="975" y="40">{ }</text>
+  <text class="text-code panel-yellow float" x="290" y="85">&lt;/&gt;</text>
+
+  <!-- Nodos y puntos de conexión extra -->
+  <circle cx="15" cy="50" r="3" class="panel-light" />
+  <circle cx="1185" cy="75" r="4" class="panel-yellow pulse" />
+  <circle cx="650" cy="75" r="3" class="panel-dark" stroke="#f4b302" stroke-width="1.5" />
+  <circle cx="1010" cy="50" r="3" class="panel-dark" stroke="#e6e7e8" stroke-width="1.5" />
+
+  <!-- Bloque de servidores apilados de forma horizontal/compacta -->
+  <rect class="panel-dark" x="1030" y="25" width="70" height="12" rx="2" />
+  <circle cx="1036" cy="31" r="2" class="panel-yellow" />
+  <circle cx="1044" cy="31" r="2" class="panel-light cursor" />
+
+  <rect class="panel-dark" x="1110" y="25" width="70" height="12" rx="2" />
+  <circle cx="1116" cy="31" r="2" class="panel-yellow" />
+  <circle cx="1124" cy="31" r="2" class="panel-light cursor" style="animation-delay: 0.5s;" />
+</svg>
