@@ -14,7 +14,7 @@ The future of software is intelligent, connected, and continuously evolving.
 
 I'm focused on engineering systems that combine robust software architecture, artificial intelligence, automation, and cloud technologies to create products that solve real problems and remain valuable as technology changes.
 
-![Logo vectorial](https://res.cloudinary.com/dbzr5rgno/image/upload/v1784345597/separator_wrv0ba.svg)
+![Logo vectorial](./assets/image/separator.svg)
 ![Logo vectorial](./assets/image/footer-animate-minimal.svg)
 
 ## 🛠 Tech Stack
